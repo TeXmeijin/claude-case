@@ -1,10 +1,10 @@
-# claude-decision
+# claude-case
 
 [English](./README.md) · [日本語](./README.ja.md)
 
-[Claude Code](https://claude.ai/code) が「1. Xする？ 2. Yする？ 3. …」のように複数の選択肢を並べてきたとき、チャットで `1,2,1 あと2はXで` と返すのが面倒。これをブラウザ UI に置き換える Skill です。
+[Claude Code](https://claude.ai/code) が「1. Xする？ 2. Yする？ 3. …」のように複数の選択肢を並べてきたとき、チャットで `1,2,1 あと2はXで` と返すのが面倒。これをブラウザ UI に置き換える Skill (`/case`) です。
 
-![claude-decision ブラウザ UI](./docs/screenshot-ja.png)
+![claude-case ブラウザ UI](./docs/screenshot-ja.png)
 
 カードをクリックして選び、必要なら質問ごとに「Free word」で補足を添え、**Submit** を押すと agent に構造化 JSON が返り制御が戻ります。
 
@@ -13,21 +13,21 @@
 [GitHub CLI](https://cli.github.com/) **v2.90.0+** が必要です（`gh skill` 同梱、2026-04-16 リリース）。
 
 ```bash
-gh skill install TeXmeijin/claude-decision claude-decision --agent claude-code --scope user
+gh skill install TeXmeijin/claude-case case --agent claude-code --scope user
 ```
 
-`~/.claude/skills/claude-decision/` に展開されます。以降 Claude Code が自動的にこの Skill を見つけて、複数択の質問があるときに呼び出します。
+`~/.claude/skills/case/` に展開されます。以降 Claude Code が自動的にこの Skill を見つけて複数択の質問で呼び出すほか、`/case` で手動起動もできます。
 
 ### 手動インストール（`gh skill` を使わない場合）
 
 ```bash
-git clone https://github.com/TeXmeijin/claude-decision.git
-cp -r claude-decision/skills/claude-decision ~/.claude/skills/
+git clone https://github.com/TeXmeijin/claude-case.git
+cp -r claude-case/skills/case ~/.claude/skills/
 ```
 
 ## 使い方
 
-基本は Claude Code が状況判断で勝手に起動します。明示的に使わせたい場合は「**claude-decision で聞いて**」のように依頼してください。
+基本は Claude Code が状況判断で勝手に起動します。明示的に使いたい場合は `/case` と打つか、「**/case で聞いて**」のように依頼してください。
 
 UI の構成:
 
@@ -98,15 +98,15 @@ UI の構成:
 ## ローカル開発
 
 ```bash
-git clone https://github.com/TeXmeijin/claude-decision.git
-cd claude-decision
-python3 skills/claude-decision/decide.py skills/claude-decision/sample.json
+git clone https://github.com/TeXmeijin/claude-case.git
+cd claude-case
+python3 skills/case/decide.py skills/case/sample.json
 ```
 
 作業中のコピーをそのまま Skill として入れる場合:
 
 ```bash
-gh skill install ./ claude-decision --from-local --agent claude-code --scope user --force
+gh skill install ./ case --from-local --agent claude-code --scope user --force
 ```
 
 ## ライセンス

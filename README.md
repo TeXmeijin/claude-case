@@ -1,33 +1,33 @@
-# claude-decision
+# claude-case
 
 [English](./README.md) · [日本語](./README.ja.md)
 
-A [Claude Code](https://claude.ai/code) skill that replaces plain-prompt multiple-choice questions with a polished browser UI.
+A [Claude Code](https://claude.ai/code) skill (`/case`) that replaces plain-prompt multiple-choice questions with a polished browser UI.
 
-![claude-decision browser UI](./docs/screenshot-en.png)
+![claude-case browser UI](./docs/screenshot-en.png)
 
-When an agent needs to confirm several design decisions at once, typing `1, 2, 1, and also for #2 I want X` in chat is tedious and error-prone. `claude-decision` pops open a local web page: click to select, optionally add a per-question *free word* override, hit **Submit** — control returns to the agent with a structured JSON result.
+When an agent needs to confirm several design decisions at once, typing `1, 2, 1, and also for #2 I want X` in chat is tedious and error-prone. `/case` pops open a local web page: click to select, optionally add a per-question *free word* override, hit **Submit** — control returns to the agent with a structured JSON result.
 
 ## Install
 
 Requires [GitHub CLI](https://cli.github.com/) **v2.90.0+** (which ships `gh skill`, released 2026-04-16).
 
 ```bash
-gh skill install TeXmeijin/claude-decision claude-decision --agent claude-code --scope user
+gh skill install TeXmeijin/claude-case case --agent claude-code --scope user
 ```
 
-That installs the skill into `~/.claude/skills/claude-decision/`. Claude Code discovers it automatically and will invoke it when it has multiple-choice decisions to confirm.
+That installs the skill into `~/.claude/skills/case/`. Claude Code discovers it automatically and will invoke it when it has multiple-choice decisions to confirm — or you can invoke it manually with `/case`.
 
 ### Manual install (no `gh skill`)
 
 ```bash
-git clone https://github.com/TeXmeijin/claude-decision.git
-cp -r claude-decision/skills/claude-decision ~/.claude/skills/
+git clone https://github.com/TeXmeijin/claude-case.git
+cp -r claude-case/skills/case ~/.claude/skills/
 ```
 
 ## Using it
 
-Claude Code triggers the skill on its own when a decision flow matches. To force it for a single turn, ask: *"Use claude-decision to ask me."*
+Claude Code triggers the skill on its own when a decision flow matches. To force it for a single turn, type `/case` or ask: *"Use /case to ask me."*
 
 The UI:
 
@@ -98,15 +98,15 @@ Same blocking pattern as [`crit`](https://crit.md/).
 ## Local development
 
 ```bash
-git clone https://github.com/TeXmeijin/claude-decision.git
-cd claude-decision
-python3 skills/claude-decision/decide.py skills/claude-decision/sample.json
+git clone https://github.com/TeXmeijin/claude-case.git
+cd claude-case
+python3 skills/case/decide.py skills/case/sample.json
 ```
 
 To install your working copy as a skill:
 
 ```bash
-gh skill install ./ claude-decision --from-local --agent claude-code --scope user --force
+gh skill install ./ case --from-local --agent claude-code --scope user --force
 ```
 
 ## License

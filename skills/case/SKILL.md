@@ -1,10 +1,10 @@
 ---
-name: claude-decision
+name: case
 description: "Opens a browser UI for the user to answer multiple-choice design/policy decisions with recommended defaults, per-question free-text override, and shared notes; returns structured JSON. TRIGGER when about to enumerate '1. X? 2. Y? 3. Z?' style questions in chat, or when presenting 2+ decisions at once, or when a single decision has a clear recommendation worth an explicit ack. トリガー: 「いくつか方針を決めて」「選択肢を整理して」「推奨つきで意思決定したい」「〜にするか〜にするか」。SKIP: a single yes/no confirmation, or a question whose answer is derivable from code/conversation."
 allowed-tools: Bash(python3:*), Read, Write
 ---
 
-# claude-decision
+# case
 
 When you need the user to make one or more multiple-choice decisions, use this skill instead of asking via plain-text enumerated prompts. A local web UI opens in the user's browser with:
 
@@ -62,7 +62,7 @@ Authoring rules:
 Run the bundled `decide.py` **in the background** via `run_in_background: true`:
 
 ```bash
-python3 ~/.claude/skills/claude-decision/decide.py /tmp/decide-input.json --output /tmp/decide-result.json
+python3 ~/.claude/skills/case/decide.py /tmp/decide-input.json --output /tmp/decide-result.json
 ```
 
 This:
