@@ -58,11 +58,11 @@
 
   .opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
   .opt {
-    position: relative; cursor: pointer;
+    position: relative; cursor: pointer; overflow: hidden;
     background: var(--panel-2); border: 1px solid var(--border);
-    border-radius: 10px; padding: 10px 12px 10px 32px;
+    border-radius: 10px; padding: 10px 40px 10px 32px;
     transition: all .1s ease; user-select: none;
-    display: flex; flex-direction: column; gap: 2px; min-height: 56px;
+    display: flex; flex-direction: column; gap: 3px; min-height: 56px;
   }
   .opt::before {
     content: ""; position: absolute; left: 10px; top: 12px;
@@ -76,12 +76,18 @@
     border: 1px solid var(--border-strong); border-radius: 5px; padding: 0 5px;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   }
-  .opt .label { font-weight: 600; font-size: 13.5px; display: flex; align-items: center; gap: 6px; }
-  .opt .note { color: var(--muted); font-size: 12px; }
+  .opt .label {
+    font-weight: 600; font-size: 13.5px;
+    display: flex; flex-wrap: wrap; align-items: center;
+    column-gap: 6px; row-gap: 4px;
+    min-width: 0; overflow-wrap: anywhere;
+  }
+  .opt .note { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
   .opt .rec-badge {
     font-size: 10px; font-weight: 500; letter-spacing: .05em;
     background: var(--rec-bg); color: var(--rec-fg);
     padding: 1px 6px; border-radius: 999px; border: 1px solid transparent;
+    flex-shrink: 0; white-space: nowrap; align-self: flex-start;
   }
 
   .opt.selected { background: var(--accent-soft); border-color: var(--accent); }
