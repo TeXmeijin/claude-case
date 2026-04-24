@@ -1,6 +1,6 @@
 ---
 name: claude-decision
-description: Use this skill whenever you are about to ask the user 2+ multiple-choice questions at once, or a single decision where confirming a recommended option matters. Opens a browser UI with cards, recommended-option badges, per-question free-text override, and a shared notes field; returns a structured JSON answer. Prefer this over plain-prompt enumerations like "1. Do X? 2. Do Y?" — typing "1,2,1 and also for #2 I'd like Z" in chat is tedious and error-prone.
+description: "Opens a browser UI for the user to answer multiple-choice design/policy decisions with recommended defaults, per-question free-text override, and shared notes; returns structured JSON. TRIGGER when about to enumerate '1. X? 2. Y? 3. Z?' style questions in chat, or when presenting 2+ decisions at once, or when a single decision has a clear recommendation worth an explicit ack. トリガー: 「いくつか方針を決めて」「選択肢を整理して」「推奨つきで意思決定したい」「〜にするか〜にするか」。SKIP: a single yes/no confirmation, or a question whose answer is derivable from code/conversation."
 allowed-tools: Bash(python3:*), Read, Write
 ---
 
