@@ -4,6 +4,8 @@
 
 A [Claude Code](https://claude.ai/code) skill that replaces plain-prompt multiple-choice questions with a polished browser UI.
 
+![claude-decision browser UI](./docs/screenshot-en.png)
+
 When an agent needs to confirm several design decisions at once, typing `1, 2, 1, and also for #2 I want X` in chat is tedious and error-prone. `claude-decision` pops open a local web page: click to select, optionally add a per-question *free word* override, hit **Submit** — control returns to the agent with a structured JSON result.
 
 ## Install

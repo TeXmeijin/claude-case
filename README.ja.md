@@ -4,6 +4,8 @@
 
 [Claude Code](https://claude.ai/code) が「1. Xする？ 2. Yする？ 3. …」のように複数の選択肢を並べてきたとき、チャットで `1,2,1 あと2はXで` と返すのが面倒。これをブラウザ UI に置き換える Skill です。
 
+![claude-decision ブラウザ UI](./docs/screenshot-ja.png)
+
 カードをクリックして選び、必要なら質問ごとに「Free word」で補足を添え、**Submit** を押すと agent に構造化 JSON が返り制御が戻ります。
 
 ## インストール
