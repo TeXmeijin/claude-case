@@ -1,0 +1,49 @@
+{
+  "title": "async / API surface / batch — 4 decisions",
+  "tag": "design review",
+  "intro": "以下 4 点は設計方針を決め切らずに進めると後戻りが出るので、GO 前に意思決定がほしい。",
+  "questions": [
+    {
+      "id": "async",
+      "title": "同期 → async 化する？",
+      "reason": "推奨: async 化する。PW 実装を追加した瞬間に呼び出し側を書き直すのが最悪パターン。今やるのが最小コスト。",
+      "options": [
+        { "label": "Make it async", "note": "Promise で統一。差分は機械的", "recommended": true },
+        { "label": "Keep it sync", "note": "PW導入時に書き直しリスク" }
+      ],
+      "allowFreeText": true
+    },
+    {
+      "id": "snapshot-view",
+      "title": "SnapshotView を scenario に公開する？",
+      "reason": "推奨: driver 非依存 API (hasRoleWithName / matches 等) だけ公開。生文字列や正規表現は露出しない。",
+      "options": [
+        { "label": "Expose (abstract only)", "note": "hasRoleWithName / matches 等", "recommended": true },
+        { "label": "Do not expose", "note": "scenario から閉じる" },
+        { "label": "UIParts layer only", "note": "中間層で吸収" }
+      ],
+      "allowFreeText": true
+    },
+    {
+      "id": "evaluate",
+      "title": "driver.evaluate を scenario に公開する？",
+      "reason": "推奨: interface には載せる。運用で ui-parts 層にとどめ、scenario で使ったら code review で落とす。",
+      "options": [
+        { "label": "Expose, constrain by policy", "note": "lint で縛る案も", "recommended": true },
+        { "label": "Hide from interface", "note": "ui-parts に内部 API で注入" },
+        { "label": "Fully open to scenarios", "note": "規律が崩れやすい" }
+      ],
+      "allowFreeText": true
+    },
+    {
+      "id": "batch",
+      "title": "既存の browser.batch(...) 最適化はどうする？",
+      "reason": "推奨: 削除。AB 固有の一括送信で interface には不要。必要になったら driver 内部で自動 batching。",
+      "options": [
+        { "label": "Remove", "note": "必要になったら内部 batching", "recommended": true },
+        { "label": "Keep on interface", "note": "既存性能を維持" }
+      ],
+      "allowFreeText": true
+    }
+  ]
+}
