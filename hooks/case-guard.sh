@@ -19,6 +19,13 @@
 
 set -u
 
+# Recursion guard. The script invokes `claude -p` for the LLM verdict, which
+# spawns an inner Claude Code session whose Stop hook would re-run this script
+# with the Haiku reply as input. Exit immediately when re-entered.
+if [ "${CASE_GUARD_INSIDE:-0}" = "1" ]; then
+  exit 0
+fi
+
 # meijin uses Max Plan and explicitly does not want hook calls to take the
 # API-key billing path. Force OAuth by clearing the env var if present.
 unset ANTHROPIC_API_KEY
@@ -120,7 +127,7 @@ PASS = anything else, including:
 
 wrapped_msg=$(printf '<assistant_message_to_classify>\n%s\n</assistant_message_to_classify>' "$msg")
 
-llm_output=$(printf '%s' "$wrapped_msg" | claude -p \
+llm_output=$(printf '%s' "$wrapped_msg" | CASE_GUARD_INSIDE=1 claude -p \
   --model claude-haiku-4-5-20251001 \
   --append-system-prompt "$classifier" \
   2>/dev/null || true)
