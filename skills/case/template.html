@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Decide</title>
+<title>Case</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
   :root {
@@ -161,7 +161,7 @@
 <div class="wrap">
   <header>
     <div class="dot"></div>
-    <h1 id="hdr-title">Decide</h1>
+    <h1 id="hdr-title">Case</h1>
     <span class="tag" id="hdr-tag">agent input</span>
     <span class="kb">↑↓ / j k — move · 1–9 — pick · A — accept all · ⌘⏎ — submit</span>
   </header>
@@ -194,7 +194,7 @@
 <script id="decide-data" type="application/json">__DECIDE_DATA__</script>
 <script>
 const DATA = JSON.parse(document.getElementById('decide-data').textContent);
-document.title = DATA.title ? `Decide — ${DATA.title}` : 'Decide';
+document.title = DATA.title ? `Case — ${DATA.title}` : 'Case';
 if (DATA.title) document.getElementById('hdr-title').textContent = DATA.title;
 if (DATA.tag) document.getElementById('hdr-tag').textContent = DATA.tag;
 if (DATA.intro) document.getElementById('intro').textContent = DATA.intro;
