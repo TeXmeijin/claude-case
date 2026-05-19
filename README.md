@@ -85,7 +85,8 @@ Same blocking pattern as [`crit`](https://crit.md/).
   "answers": [
     {
       "id": "stable-id",
-      "selectedLabel": "Choice A",
+      "selectedIndex": 0,
+      "selectedLabel": "Choice A or null when answered with free word only",
       "wasRecommended": true,
       "freeText": "optional caveat, or null"
     }

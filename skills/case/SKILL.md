@@ -97,9 +97,9 @@ When the background task completes, stdout contains `Decision result saved to <p
 ```
 
 Interpret:
-- `selectedLabel` is the user's choice.
+- `selectedLabel` is the user's choice. It may be `null` when the user answered with free text only.
 - `wasRecommended: true` means they accepted your recommendation (often a green light to proceed).
-- `freeText` (when non-null) is a **layered instruction** — it refines or overrides the selected choice. Read it carefully before acting; treat it as a higher-priority constraint than the label alone.
+- `freeText` (when non-null) is a **layered instruction** — it refines or overrides the selected choice. When there is no selected choice, treat `freeText` as the complete answer for that question.
 - Top-level `notes` (when non-null) applies to the whole decision set and may include scope changes or side-topics.
 
 ## Step 4: Act on the decisions

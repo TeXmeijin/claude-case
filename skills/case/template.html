@@ -249,6 +249,7 @@ function render() {
     el.addEventListener('focus', () => focusQuestion(parseInt(el.dataset.q)));
     el.addEventListener('input', () => {
       state[parseInt(el.dataset.q)].free = el.value;
+      updateStatus();
     });
   });
   qRoot.querySelectorAll('.q').forEach(el => {
@@ -282,11 +283,15 @@ function acceptAllRecommended() {
 }
 
 function allAnswered() {
-  return state.every(s => s.selected !== null);
+  return state.every(isAnswered);
+}
+
+function isAnswered(s) {
+  return s.selected !== null || s.free.trim() !== "";
 }
 
 function updateStatus() {
-  const done = state.filter(s => s.selected !== null).length;
+  const done = state.filter(isAnswered).length;
   const total = state.length;
   document.getElementById('status').innerHTML =
     `<b>${done}</b> / ${total} answered` +
